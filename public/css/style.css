@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f172a;
+    margin: 0;
+    padding: 40px;
+    color: #f8fafc;
+}
+
+h1 {
+    text-align: center;
+    color: #38bdf8;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+table {
+    width: 85%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: rgba(30, 41, 59, 0.85);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+}
+
+th, td {
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #e2e8f0;
+}
+
+th {
+    background: #1e293b;
+    color: #f8fafc;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 2px solid #38bdf8;
+}
+
+tr:nth-child(even) {
+    background: rgba(51, 65, 85, 0.6);
+}
+
+tr:hover {
+    background: rgba(56, 189, 248, 0.15);
+    transition: background 0.3s ease;
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+a[href*="update"] {
+    background: linear-gradient(135deg, #facc15, #f59e0b);
+    color: #111;
+}
+
+a[href*="update"]:hover {
+    background: linear-gradient(135deg, #fbbf24, #eab308);
+    transform: scale(1.05);
+}
+
+a[href*="delete"] {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+}
+
+a[href*="delete"]:hover {
+    background: linear-gradient(135deg, #f87171, #b91c1c);
+    transform: scale(1.05);
+}
+
+.create-btn {
+    display: block;
+    width: max-content;
+    margin: 35px auto;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #34d399, #059669);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(52, 211, 153, 0.4);
+    transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+    background: linear-gradient(135deg, #6ee7b7, #047857);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
