@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showdata</title>
-    <link rel="stylesheet" href="<?=base_url();?>public/css/style.css">
+    <link rel="stylesheet" href="<?=base_url();?>/public/css/style.css">
 </head>
 <body>
-    <h1>Welcome to Showdata View</h1>
+    <h1>Showdata View</h1>
     <table border="1">
         <tr>
             <th>ID</th>
