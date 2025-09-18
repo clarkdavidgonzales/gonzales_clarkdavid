@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update</title>
-     <link rel="stylesheet" href="<?=base_url();?>css/style2.css">
-
+     <link rel="stylesheet" href="<?=base_url();?>public/css/style2.css">
 </head>
 <body>
     <h1>Welcome to Update View</h1>
