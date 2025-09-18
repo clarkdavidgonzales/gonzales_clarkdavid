@@ -43,7 +43,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'UserController::create');
+$router->get('/user/show', 'UserController::show');
 $router->get('/about', 'Welcome::about');
 $router->get('/user/profile/{username}/{name}', 'UserController::profile');
 $router->get('/user/show', 'UserController::show');
