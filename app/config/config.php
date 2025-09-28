@@ -79,7 +79,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'https://gonzales-clarkdavid.onrender.com';
+$config['base_url'] 				= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -212,7 +212,7 @@ $config['language'] 				= 'en-US';
 $config['sess_driver']             = 'file';
 $config['sess_cookie_name']        = 'LLSession';
 $config['sess_expiration']         = 7200;
-$config['sess_save_path']          = '';
+$config['sess_save_path']          = '/var/www/html/writable/session';
 $config['sess_match_ip']           = TRUE;
 $config['sess_match_fingerprint']  = TRUE;
 $config['sess_time_to_update']     = 300;
@@ -275,7 +275,7 @@ $config['encryption_key']           = '';
 |   $config['soft_delete_column'] = 'deleted_at;
 |
 */
-$config['soft_delete']              = TRUE;
+$config['soft_delete']              = FALSE;
 $config['soft_delete_column']       = 'deleted_at';
 
 /*

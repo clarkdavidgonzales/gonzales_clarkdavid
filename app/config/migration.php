@@ -1,27 +1,36 @@
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
-// ... (LavaLust Copyright Notice) ...
 
 /*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
+| Enable/Disable Migrations
+|--------------------------------------------------------------------------
+|
+| Migrations are disabled by default for security reasons.
+| You should enable migrations whenever you intend to do a schema migration
+| and disable it back when you're done.
+|
 */
+$config['migration_enabled'] = FALSE;
 
-// Home route: accepts optional page number
-$router->get('/{page?}', 'UserController::show'); 
+/*
+|--------------------------------------------------------------------------
+| Migrations table
+|--------------------------------------------------------------------------
+|
+| This is the name of the table that will store the current migrations state.
+|
+*/
+$config['migration_table'] = 'migrations';
 
-$router->get('/about', 'Welcome::about');
-$router->get('/user/profile/{username}/{name}', 'UserController::profile');
-
-// Explicit show route: accepts optional page number
-$router->get('/user/show/{page?}', 'UserController::show'); 
-
-$router->match('/user/create', 'UserController::create', ['GET', 'POST']);
-$router->match('/user/update/{id}', 'UserController::update', ['GET', 'POST']);
-
-// ✅ FIX: Add optional page parameter for delete actions
-$router->get('/user/delete/{id}/{page?}', 'UserController::delete');
-$router->get('user/soft-delete/{id}/{page?}', 'UserController::soft_delete'); 
-
-$router->get('/user/restore/{id}', 'UserController::restore');
+/*
+|--------------------------------------------------------------------------
+| Migrations Path
+|--------------------------------------------------------------------------
+|
+| Path to your migrations folder.
+| Typically, it will be within your application path.
+| Also, writing permission is required within the migrations path.
+|
+*/
+$config['migration_path'] = APP_DIR.'migrations/';
