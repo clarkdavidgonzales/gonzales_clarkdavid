@@ -64,7 +64,7 @@ $database['main'] = array(
     'username'	=> 'sql12800363',
     'password'	=> 'Iu2xqY88CA',
     'database'	=> 'sql12800363',
-    'charset'	=> 'utf8mb4',ggg
+    'charset'	=> 'utf8mb4',
     'dbprefix'	=> '',
     // Optional for SQLite
     'path'      => ''
