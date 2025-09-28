@@ -21,12 +21,15 @@ class UserModel extends Model {
      */
     public function get_paginated_students($limit, $offset)
     {
-        // ✅ FIX 1: Resolves "all() on array" by using explicit Query Builder.
-        // ✅ FIX 2: Resolves "SQLSTATE[42000] LIMIT 10, 0" by swapping arguments.
-        // The framework's internal limit method expects (offset, limit) for SQL: LIMIT offset, limit.
+        // FIX 1 (all() on array): Use the explicit Query Builder approach.
+        // FIX 2 (SQL Error): Swapping $offset and $limit is necessary because 
+        // the framework's internal limit method appears to expect (offset, limit) 
+        // arguments to generate the correct SQL (LIMIT offset, limit).
+        
         $this->db->limit($offset, $limit); 
         
-        // Execute the query
+        // Execute the query on the model's defined table and return the results.
+        // This execution method avoids the failed chaining.
         return $this->db->get($this->table)->result_array(); 
     }
 
@@ -36,10 +39,7 @@ class UserModel extends Model {
      */
     public function count_all_students()
     {
+        // This remains correct for getting the total records.
         return $this->count();
     }
 }
-
-// NOTE: If you are encountering the 'Class "CodeIgniter\Model" not found' error 
-// in a separate file, you must correct the casing to 'use CodeIgniter\Model;' (capital 'I')
-// in that specific file. This code is for the LavaLust context.
