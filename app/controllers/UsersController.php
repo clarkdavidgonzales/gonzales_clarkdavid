@@ -16,18 +16,19 @@ class UsersController extends Controller {
             $page = $this->io->get('page');
         }
 
-        // Search query
-        $q = '';
-        if (isset($_GET['q']) && !empty($_GET['q'])) {
-            $q = trim($this->io->get('q'));
-        }
+    // Search query
+    $q = '';
+    if (isset($_GET['q']) && !empty($_GET['q'])) {
+    $q = trim($this->io->get('q'));
+    }
 
-        $records_per_page = 5;
+    $records_per_page = 5;
 
-        
-        $all = $this->UsersModel->page($q, $records_per_page, $page);
-        $data['users'] = $all['records'];
-        $total_rows = $all['total_rows'];
+    // Fetch paginated results
+    $all = $this->UsersModel->page($q, $records_per_page, $page);
+    $data['users'] = $all['records'];
+    $total_rows = $all['total_rows'];
+
 
         // Pagination 
         
