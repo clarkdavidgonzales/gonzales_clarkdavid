@@ -19,7 +19,6 @@ class Usersmodel extends Model {
     public function page($q = '', $records_per_page = null, $page = null)
     {
         if (is_null($page)) {
-            // return all without pagination
             return [
                 'total_rows' => $this->db->table($this->table)->count_all(),
                 'records'    => $this->db->table($this->table)->get_all()
@@ -28,10 +27,12 @@ class Usersmodel extends Model {
             $query = $this->db->table($this->table);
 
             if (!empty($q)) {
-                // Search fname OR lname OR email
-                $query->like('fname', $q)
-                      ->or_like('lname', $q)
-                      ->or_like('email', $q);
+                $q = strtolower($q); // convert search term to lowercase
+
+                // Case-insensitive search by converting columns to lowercase
+                $query->where("LOWER(fname) LIKE '%$q%'")
+                      ->or_where("LOWER(lname) LIKE '%$q%'")
+                      ->or_where("LOWER(email) LIKE '%$q%'");
             }
 
             // count total rows
