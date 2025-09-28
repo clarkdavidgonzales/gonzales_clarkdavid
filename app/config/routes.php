@@ -42,12 +42,21 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |
 */
-$router->get('/', 'UserController::show');
+
+// FIX 1: Add optional page parameter for the root path (e.g., /2, /3)
+$router->get('/{page?}', 'UserController::show'); 
+
 $router->get('/about', 'Welcome::about');
 $router->get('/user/profile/{username}/{name}', 'UserController::profile');
-$router->get('/user/show', 'UserController::show');
+
+// FIX 2: Replace /user/show with /user/show/{page?} for pagination (e.g., /user/show/2)
+$router->get('/user/show/{page?}', 'UserController::show');
+
 $router->match('/user/create', 'UserController::create', ['GET', 'POST']);
 $router->match('/user/update/{id}', 'UserController::update', ['GET', 'POST']);
-$router->get('/user/delete/{id}', 'UserController::delete');
-$router->get('user/soft-delete/{id}', 'UserController::soft_delete');
+
+// FIX 3: Add optional page parameter to delete routes to handle redirects
+$router->get('/user/delete/{id}/{page?}', 'UserController::delete');
+$router->get('user/soft-delete/{id}/{page?}', 'UserController::soft_delete');
+
 $router->get('/user/restore/{id}', 'UserController::restore');
