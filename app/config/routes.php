@@ -42,6 +42,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |
 */
+
+// ORIGINAL ROUTES (KEPT INTACT)
 $router->get('/', 'UserController::show');
 $router->get('/about', 'Welcome::about');
 $router->get('/user/profile/{username}/{name}', 'UserController::profile');
@@ -51,3 +53,19 @@ $router->match('/user/update/{id}', 'UserController::update', ['GET', 'POST']);
 $router->get('/user/delete/{id}', 'UserController::delete');
 $router->get('user/soft-delete/{id}', 'UserController::soft_delete');
 $router->get('/user/restore/{id}', 'UserController::restore');
+
+// ====================================================================
+// NEW ROUTES FOR PAGINATION AND DELETE REDIRECTS (DO NOT CHANGE EXISTING ONES)
+// ====================================================================
+
+// NEW: Route for home path with optional page number (e.g., /2, /3)
+$router->get('/{page?}', 'UserController::show'); 
+
+// NEW: Route for /user/show with optional page number (e.g., /user/show/2)
+$router->get('/user/show/{page?}', 'UserController::show');
+
+// NEW: Route for delete that accepts the optional page number for redirecting back
+$router->get('/user/delete/{id}/{page?}', 'UserController::delete');
+
+// NEW: Route for soft-delete that accepts the optional page number for redirecting back
+$router->get('user/soft-delete/{id}/{page?}', 'UserController::soft_delete');
