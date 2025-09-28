@@ -27,8 +27,8 @@
       <div class="bg-blue-600 rounded-full p-5 shadow-md">
         <i class="fa-solid fa-user-graduate text-white text-4xl"></i>
       </div>
-      <h2 class="text-2xl font-bold text-white mt-3 tracking-wide">Add New Student</h2>
-      <p class="text-sm text-gray-400 mt-1">Register a new student in the system</p>
+      <h2 class="text-2xl font-bold text-white mt-3 tracking-wide">Add New Student Record</h2>
+      <p class="text-sm text-gray-400 mt-1">New student record</p>
     </div>
 
     <!-- Form -->
@@ -53,7 +53,7 @@
 
       <button type="submit"
               class="btn-hover w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg transition transform hover:scale-105">
-         <i class="fa-solid fa-user-plus"></i> Add Student
+         <i class="fa-solid fa-user-plus"></i> Add Student Record
       </button>
     </form>
   </div>

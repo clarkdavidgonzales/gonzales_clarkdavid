@@ -43,7 +43,7 @@
   <nav class="bg-blue-700 shadow-lg border-b border-blue-800">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-white text-2xl font-bold flex items-center gap-2">
-        <i class="fa-solid fa-users"></i> Student Directory
+        <i class="fa-solid fa-users"></i> Student List
       </h1>
     </div>
   </nav>
@@ -71,7 +71,7 @@
         <!-- Add Button -->
         <a href="<?=site_url('users/create')?>"
            class="btn-hover inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition">
-          <i class="fa-solid fa-user-plus"></i> Add Student
+          <i class="fa-solid fa-user-plus"></i> Add Student Record
         </a>
       </div>
 
@@ -81,8 +81,8 @@
           <thead>
             <tr class="text-white uppercase tracking-wide text-sm">
               <th class="py-3 px-4">ID</th>
-              <th class="py-3 px-4">Lastname</th>
-              <th class="py-3 px-4">Firstname</th>
+              <th class="py-3 px-4">First Name</th>
+              <th class="py-3 px-4">Last Name</th>
               <th class="py-3 px-4">Email</th>
               <th class="py-3 px-4">Action</th>
             </tr>
