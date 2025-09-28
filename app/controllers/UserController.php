@@ -70,7 +70,7 @@ class UserController extends Controller {
         );
 
         // Call the model's update function and check the result.
-        if($this->UserModel->update($id, $update_data))
+        if($this->UserModel->updggate($id, $update_data))
         {
            redirect('user/show'); // Redirect on success.
         } else {
