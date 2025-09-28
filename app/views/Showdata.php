@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Showdata View</h1>
+
     <table border="1">
         <tr>
             <th>ID</th>
@@ -16,18 +17,24 @@
             <th>Email</th>
             <th>Action</th>
         </tr>
-        <?php foreach(html_escape($students) as $student): ?>
-        <tr>
-            <td><?=$student['id'];?></td>
-            <td><?=$student['last_name'];?></td>
-            <td><?=$student['first_name'];?></td>
-            <td><?=$student['email'];?></td>
-            <td>
-                <a href="<?=site_url('user/update/'.$student['id']);?>">Update</a>
-                <a href="<?=site_url('user/soft-delete/'.$student['id']);?>">Delete</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
+        <?php if(!empty($students)): ?>
+            <?php foreach(html_escape($students) as $student): ?>
+            <tr>
+                <td><?=$student['id'];?></td>
+                <td><?=$student['last_name'];?></td>
+                <td><?=$student['first_name'];?></td>
+                <td><?=$student['email'];?></td>
+                <td>
+                    <a href="<?=site_url('user/update/'.$student['id']);?>">Update</a>
+                    <a href="<?=site_url('user/soft-delete/'.$student['id']);?>">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="5">No records found.</td>
+            </tr>
+        <?php endif; ?>
     </table>
 
     <a href="<?=site_url('user/create');?>">Create Record</a>

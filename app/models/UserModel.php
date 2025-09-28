@@ -1,11 +1,6 @@
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-/**
- * Model: UserModel
- * 
- * Automatically generated via CLI.
- */
 class UserModel extends Model {
     protected $table = 'students';
     protected $primary_key = 'id';
@@ -19,7 +14,8 @@ class UserModel extends Model {
     public function get_paginated($limit, $offset)
     {
         return $this->db->table($this->table)
-                        ->limit($limit, $offset)
+                        ->limit($limit)       // limit rows
+                        ->offset($offset)     // skip rows
                         ->get_all();
     }
 

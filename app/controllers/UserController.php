@@ -1,15 +1,11 @@
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-/**
- * Controller: UserController
- * Automatically generated via CLI.
- */
 class UserController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->call->model('UserModel'); // make sure model is loaded
+        $this->call->model('UserModel'); // ✅ load model here
     }
 
     public function profile($username, $name) {
@@ -20,11 +16,13 @@ class UserController extends Controller {
 
     public function show($page = 1)
     {
-        $limit = 5; // number of records per page
+        $limit = 5; // records per page
         $offset = ($page - 1) * $limit;
 
+        // fetch records
         $data['students'] = $this->UserModel->get_paginated($limit, $offset);
 
+        // pagination data
         $total_rows = $this->UserModel->count_all();
         $data['total_pages'] = ceil($total_rows / $limit);
         $data['current_page'] = $page;
@@ -36,14 +34,14 @@ class UserController extends Controller {
     {
         if($this->io->method() == 'post')
         {
-            $last_name = $this->io->post('last_name');
+            $last_name  = $this->io->post('last_name');
             $first_name = $this->io->post('first_name');
-            $email = $this->io->post('email');
+            $email      = $this->io->post('email');
 
             $data = array(
-                'last_name' => $last_name,
+                'last_name'  => $last_name,
                 'first_name' => $first_name,
-                'email' => $email
+                'email'      => $email
             );
 
             if($this->UserModel->insert($data))
@@ -63,14 +61,14 @@ class UserController extends Controller {
 
         if($this->io->method() == 'post')
         {
-            $last_name = $this->io->post('last_name');
+            $last_name  = $this->io->post('last_name');
             $first_name = $this->io->post('first_name');
-            $email = $this->io->post('email');
+            $email      = $this->io->post('email');
 
             $update_data = array(
-                'last_name' => $last_name,
+                'last_name'  => $last_name,
                 'first_name' => $first_name,
-                'email' => $email
+                'email'      => $email
             );
 
             if($this->UserModel->update($id, $update_data))
