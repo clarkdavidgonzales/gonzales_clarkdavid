@@ -42,8 +42,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |
 */
-
-// ORIGINAL ROUTES (KEPT INTACT)
 $router->get('/', 'UserController::show');
 $router->get('/about', 'Welcome::about');
 $router->get('/user/profile/{username}/{name}', 'UserController::profile');
