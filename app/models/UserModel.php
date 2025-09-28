@@ -22,10 +22,14 @@ class UserModel extends Model {
     public function get_paginated_students($limit, $offset)
     {
         // ✅ FIX: Use the explicit Query Builder approach to enforce LIMIT/OFFSET.
-        // This is the most reliable way to enforce the limit when chaining fails.
-        $this->db->limit($limit, $offset);
+        // The SQL error (LIMIT 10, 0) indicates the framework expects (offset, limit) 
+        // arguments for its internal limit() method, NOT (limit, offset) as defined.
         
-        // Execute the query on the model's defined table and return the results as an array.
+        // 1. Tell the underlying database query to use the limit and offset in the correct order for the framework
+        // $this->db->limit($limit, $offset); // Original (and wrong for the framework's internal method)
+        $this->db->limit($offset, $limit); // 👈 Corrected order to get LIMIT 0, 10
+        
+        // 2. Execute the query on the model's defined table and return the results as an array.
         return $this->db->get($this->table)->result_array(); 
     }
 
@@ -37,7 +41,4 @@ class UserModel extends Model {
     {
         return $this->count();
     }
-    
-    // NOTE: If you are using a separate file for the CodeIgniter-style model 
-    // (with namespaces), ensure 'use CodeIgniter\Model;' is used (capital 'I').
 }
