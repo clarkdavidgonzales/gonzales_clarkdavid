@@ -28,12 +28,10 @@ class Usersmodel extends Model {
             $query = $this->db->table($this->table);
 
             if (!empty($q)) {
-                // Grouped search: fname OR lname OR email
-                $query->group_start()
-                      ->like('fname', $q)
+                // Simple OR LIKE search across fname, lname, email
+                $query->like('fname', $q)
                       ->or_like('lname', $q)
-                      ->or_like('email', $q)
-                      ->group_end();
+                      ->or_like('email', $q);
             }
 
             // count total rows
