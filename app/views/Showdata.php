@@ -29,6 +29,27 @@
         </tr>
         <?php endforeach; ?>
     </table>
+
     <a href="<?=site_url('user/create');?>">Create Record</a>
+
+    <br><br>
+    <!-- Pagination -->
+    <div>
+        <?php if($current_page > 1): ?>
+            <a href="<?=site_url('user/show/'.($current_page-1));?>">Prev</a>
+        <?php endif; ?>
+
+        <?php for($i = 1; $i <= $total_pages; $i++): ?>
+            <?php if($i == $current_page): ?>
+                <strong><?=$i;?></strong>
+            <?php else: ?>
+                <a href="<?=site_url('user/show/'.$i);?>"><?=$i;?></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+
+        <?php if($current_page < $total_pages): ?>
+            <a href="<?=site_url('user/show/'.($current_page+1));?>">Next</a>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
