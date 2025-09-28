@@ -1,10 +1,18 @@
-<?php namespace App\Models;
+<?php
+defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-use CodeIgniter\Model;
+/**
+ * Model: UserModel
+ * 
+ * Automatically generated via CLI.
+ */
+class UserModel extends Model {
+    protected $table = 'students';
+    protected $primary_key = 'id';
 
-class StudentModel extends Model
-{
-    protected $table      = 'students'; // **Change to your actual table name**
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['last_name', 'first_name', 'email'];
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
 }
