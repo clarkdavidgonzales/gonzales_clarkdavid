@@ -1,114 +1,106 @@
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-class UserController extends Controller {
+class UsersController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->call->model('UserModel'); // ✅ load model here
+        $this->call->model('UsersModel');
     }
 
-    public function profile($username, $name) {
-        $data['username'] = $username;
-        $data['name'] = $name;
-        $this->call->view('ViewProfile', $data);
-    }
-
-    public function show($page = 1)
+    public function index()
     {
-        $limit = 5; // records per page
-        $offset = ($page - 1) * $limit;
+        // Current page
+        $page = 1;
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $page = $this->io->get('page');
+        }
 
-        // fetch records
-        $data['students'] = $this->UserModel->get_paginated($limit, $offset);
+        // Search query
+        $q = '';
+        if (isset($_GET['q']) && !empty($_GET['q'])) {
+            $q = trim($this->io->get('q'));
+        }
 
-        // pagination data
-        $total_rows = $this->UserModel->count_all();
-        $data['total_pages'] = ceil($total_rows / $limit);
-        $data['current_page'] = $page;
+        $records_per_page = 5;
 
-        $this->call->view('Showdata', $data);
+        
+        $all = $this->UsersModel->page($q, $records_per_page, $page);
+        $data['users'] = $all['records'];
+        $total_rows = $all['total_rows'];
+
+        // Pagination 
+        
+        $this->pagination->set_options([
+            'first_link'     => '⏮ First',
+            'last_link'      => 'Last ⏭',
+            'next_link'      => 'Next →',
+            'prev_link'      => '← Prev',
+            'page_delimiter' => '&page='
+        ]);
+       
+        $this->pagination->set_theme('default');
+        
+        $this->pagination->initialize(
+            $total_rows,
+            $records_per_page,
+            $page,
+            site_url() . '?q=' . urlencode($q)
+        );
+        $data['page'] = $this->pagination->paginate();
+
+        $this->call->view('users/index', $data);
     }
 
-    public function create()
-    {
-        if($this->io->method() == 'post')
-        {
-            $last_name  = $this->io->post('last_name');
-            $first_name = $this->io->post('first_name');
-            $email      = $this->io->post('email');
+    function create(){
+        if($this->io->method() == 'post'){
+            $data = [
+                'fname' => $this->io->post('fname'),
+                'lname'  => $this->io->post('lname'),
+                'email'      => $this->io->post('email')
+            ];
 
-            $data = array(
-                'last_name'  => $last_name,
-                'first_name' => $first_name,
-                'email'      => $email
-            );
-
-            if($this->UserModel->insert($data))
-            {
-                redirect('user/show');
-            } else {
-                echo 'Failed to insert data.';
+            if($this->UsersModel->insert($data)){
+                redirect(site_url());
+            }else{
+                echo "Error in creating user.";
             }
-        } else {
-            $this->call->view('Create');
+
+        }else{
+            $this->call->view('users/create');
         }
     }
 
-    public function update($id)
-    {
-        $data['student'] = $this->UserModel->find($id);
+    function update($id){
+        $user = $this->UsersModel->find($id);
+        if(!$user){
+            echo "User not found.";
+            return;
+        }
 
-        if($this->io->method() == 'post')
-        {
-            $last_name  = $this->io->post('last_name');
-            $first_name = $this->io->post('first_name');
-            $email      = $this->io->post('email');
+        if($this->io->method() == 'post'){
+            $data = [
+                'fname' => $this->io->post('fname'),
+                'lname'  => $this->io->post('lname'),
+                'email'      => $this->io->post('email')
+            ];
 
-            $update_data = array(
-                'last_name'  => $last_name,
-                'first_name' => $first_name,
-                'email'      => $email
-            );
-
-            if($this->UserModel->update($id, $update_data))
-            {
-                redirect('user/show');
-            } else {
-                $data['error_message'] = 'Failed to update data.';
+            if($this->UsersModel->update($id, $data)){
+                redirect(site_url());
+            }else{
+                echo "Error in updating information.";
             }
-        }
-
-        $this->call->view('Update', $data);
-    }
-
-    public function delete($id)
-    {
-        if($this->UserModel->delete($id))
-        {
-            redirect('user/show');
-        } else {
-            echo 'Failed to delete data.';
+        }else{
+            $data['user'] = $user;
+            $this->call->view('users/update', $data);
         }
     }
-
-    public function soft_delete($id)
-    {
-        if($this->UserModel->soft_delete($id))
-        {
-            redirect('user/show');
-        } else {
-            echo 'Failed to delete data.';
-        }
-    }
-
-    public function restore($id)
-    {
-        if($this->UserModel->restore($id))
-        {
-            redirect('user/show');
-        } else {
-            echo 'Failed to restore data.';
+    
+    function delete($id){
+        if($this->UsersModel->delete($id)){
+            redirect(site_url());
+        }else{
+            echo "Error in deleting user.";
         }
     }
 }
