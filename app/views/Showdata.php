@@ -7,24 +7,14 @@
     <link rel="stylesheet" href="<?=base_url();?>/public/css/style.css">
 </head>
 <body>
-    <h1>Student Records</h1>
+    <h1>Showdata View</h1>
     <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Lastname</th>
-            <th>Firstname</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
         <?php foreach(html_escape($students) as $student): ?>
         <tr>
-            <td><?=$student['id'];?></td>
-            <td><?=$student['last_name'];?></td>
-            <td><?=$student['first_name'];?></td>
-            <td><?=$student['email'];?></td>
             <td>
                 <a href="<?=site_url('user/update/'.$student['id']);?>">Update</a>
-                <a href="<?=site_url('user/soft-delete/'.$student['id']);?>">Delete</a>
+                
+                <a href="<?=site_url('user/soft-delete/'.$student['id'] . '/' . $current_page);?>">Delete</a>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -34,28 +24,27 @@
 
     <div class="pagination">
         <?php 
-        // Display a "Previous" link
+        // 'Previous' button
         if ($current_page > 1): ?>
-            <a href="<?=site_url('user/show/'.($current_page - 1));?>">Previous</a>
+            <a href="<?=site_url('user/show/'.($current_page - 1));?>">« Prev</a>
         <?php endif; ?>
 
         <?php 
-        // Loop through all pages
+        // Numeric page links
         for ($i = 1; $i <= $total_pages; $i++): ?>
             <?php if ($i == $current_page): ?>
-                <strong><?=$i;?></strong>
+                <strong style="padding: 5px; border: 1px solid #ccc;"><?=$i;?></strong>
             <?php else: ?>
-                <a href="<?=site_url('user/show/'.$i);?>"><?=$i;?></a>
+                <a href="<?=site_url('user/show/'.$i);?>" style="padding: 5px;"><?=$i;?></a>
             <?php endif; ?>
         <?php endfor; ?>
 
         <?php 
-        // Display a "Next" link
+        // 'Next' button
         if ($current_page < $total_pages): ?>
-            <a href="<?=site_url('user/show/'.($current_page + 1));?>">Next</a>
+            <a href="<?=site_url('user/show/'.($current_page + 1));?>">Next »</a>
         <?php endif; ?>
     </div>
     <p>Page <?=$current_page;?> of <?=$total_pages;?>.</p>
-
 </body>
 </html>

@@ -3,7 +3,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /**
  * Model: UserModel
- * * Automatically generated via CLI.
  */
 class UserModel extends Model {
     protected $table = 'students';
@@ -16,27 +15,18 @@ class UserModel extends Model {
     
     /**
      * Fetches students with limit and offset for pagination.
-     * @param int $limit The maximum number of records to retrieve.
+     * @param int $limit The maximum number of records to retrieve (10).
      * @param int $offset The starting position (skip this many records).
      * @return array The paginated list of students.
      */
     public function get_paginated_students($limit, $offset)
     {
-        // FIX: The limit() method likely returns an array (the data), 
-        // which makes chaining all() fail. 
+        // ✅ FIX: Use the explicit Query Builder approach to enforce LIMIT/OFFSET.
+        // This is the most reliable way to enforce the limit when chaining fails.
+        $this->db->limit($limit, $offset);
         
-        // Instead, try applying the limit and offset directly to the final fetch method.
-        // This is a common pattern in non-chainable query builders.
-        
-        // Option 1: Pass limit and offset to all() directly (Most likely fix for a simple framework)
-        return $this->all($limit, $offset); 
-        
-        // Option 2: Use the limit() method, but ONLY if it stores the limit/offset
-        // and doesn't execute the query, then call all() (Less likely given the error)
-        // return $this->limit($limit, $offset)->all(); // Your original, failing code
-
-        // Option 3: If your framework uses a method like get_by_limit_offset()
-        // return $this->get_by_limit_offset($limit, $offset);
+        // Execute the query on the model's defined table and return the results as an array.
+        return $this->db->get($this->table)->result_array(); 
     }
 
     /**
@@ -45,7 +35,9 @@ class UserModel extends Model {
      */
     public function count_all_students()
     {
-        // This should be fine assuming your framework's Model class has a 'count' method
         return $this->count();
     }
+    
+    // NOTE: If you are using a separate file for the CodeIgniter-style model 
+    // (with namespaces), ensure 'use CodeIgniter\Model;' is used (capital 'I').
 }

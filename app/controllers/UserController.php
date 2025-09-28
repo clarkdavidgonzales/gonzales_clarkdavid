@@ -3,13 +3,11 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /**
  * Controller: UserController
- * * Automatically generated via CLI.
  */
 class UserController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        
     }
 
     public function profile($username, $name) {
@@ -18,32 +16,28 @@ class UserController extends Controller {
         $this->call->view('ViewProfile', $data);
     }
 
-    // --- MODIFIED 'show' FUNCTION FOR PAGINATION ---
+    /**
+     * Shows paginated list of students.
+     * @param int $page The current page number (defaults to 1).
+     */
     public function show($page = 1)
     {
-        $limit = 10; // Records per page
-        $page = (int)$page; // Ensure $page is an integer
+        $limit = 10; // ✅ LIMIT IS SET TO 10
+        $page = (int)$page; 
         if ($page < 1) $page = 1;
 
-        // Calculate offset (e.g., page 1: (1-1)*10 = 0; page 2: (2-1)*10 = 10)
         $offset = ($page - 1) * $limit;
 
-        // Get total number of records
         $total_records = $this->UserModel->count_all_students();
-        
-        // Calculate total pages
         $total_pages = ceil($total_records / $limit);
 
-        // Fetch paginated data
         $data['students'] = $this->UserModel->get_paginated_students($limit, $offset);
         
-        // Pass pagination variables to the view
         $data['total_pages'] = $total_pages;
-        $data['current_page'] = $page;
+        $data['current_page'] = $page; // Pass current page for links/redirects
 
         $this->call->view('Showdata', $data);
     }
-    // ------------------------------------------------
 
     public function create()
     {
@@ -57,11 +51,11 @@ class UserController extends Controller {
                 'last_name' => $last_name,
                 'first_name' => $first_name,
                 'email' => $email
-
             );
             if($this->UserModel->insert($data))
             {
-                redirect('user/show');
+                // Redirect to page 1 after creation
+                redirect('user/show/1');
             }else{
                 echo 'Failed to insert data.';
             }
@@ -72,56 +66,48 @@ class UserController extends Controller {
 
         public function update($id)
         {
-            // Fetch the student data before processing the form submission.
-            // This ensures $data['student'] is always available for the view.
             $data ['student'] = $this->UserModel->find($id);
 
-            // Check if the request method is POST (i.e., the form has been submitted).
             if($this->io->method() == 'post')
             {
                 $last_name = $this->io->post('last_name');
                 $first_name = $this->io->post('first_name');
                 $email = $this->io->post('email');
 
-                // Create a new array for the update data to avoid overwriting the student data.
                 $update_data = array(
                     'last_name' => $last_name,
                     'first_name' => $first_name,
                     'email' => $email
                 );
 
-                // Call the model's update function and check the result.
                 if($this->UserModel->update($id, $update_data))
                 {
-                    redirect('user/show'); // Redirect on success.
+                    // Redirect to the beginning of the list after update
+                    redirect('user/show/1'); 
                 } else {
-                    // On failure, display an error message and then the form again.
                     $data['error_message'] = 'Failed to update data.';
-                    // Fall through to display the form below.
                 }
             }
-
-            // This line will be reached for both GET and POST requests.
-            // For a GET request, it's the only logic.
-            // For a failed POST, it re-displays the form with the error message.
             $this->call->view('Update', $data);
         }
             
-        public function delete($id)
+        public function delete($id, $page = 1) // ✅ ACCEPTS PAGE NUMBER
         {
             if($this->UserModel->delete($id))
             {
-                redirect('user/show');
+                // FIX: Redirect back to the current page after deletion
+                redirect('user/show/' . $page); 
             }else{
                 echo 'Failed to delete data.';
             }
         }
 
-        public function soft_delete($id)
+        public function soft_delete($id, $page = 1) // ✅ ACCEPTS PAGE NUMBER
         {
             if($this->UserModel->soft_delete($id))
             {
-                redirect('user/show');
+                // FIX: Redirect back to the current page after deletion
+                redirect('user/show/' . $page);
             }else{
                 echo 'Failed to delete data.';
             }
@@ -131,7 +117,7 @@ class UserController extends Controller {
         {
             if($this->UserModel->restore($id))
             {
-                redirect('user/show');
+                redirect('user/show/1');
             }else{
                 echo 'Failed to restore data.';
             }
