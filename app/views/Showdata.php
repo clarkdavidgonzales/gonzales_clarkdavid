@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?=base_url();?>/public/css/style.css">
 </head>
 <body>
-    <h1>Showdata View</h1>
+    <h1>Student Records</h1>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -29,6 +29,33 @@
         </tr>
         <?php endforeach; ?>
     </table>
-    <a href="<?=site_url('user/create');?>">Create Record</a>
+
+    <p><a href="<?=site_url('user/create');?>">Create Record</a></p>
+
+    <div class="pagination">
+        <?php 
+        // Display a "Previous" link
+        if ($current_page > 1): ?>
+            <a href="<?=site_url('user/show/'.($current_page - 1));?>">Previous</a>
+        <?php endif; ?>
+
+        <?php 
+        // Loop through all pages
+        for ($i = 1; $i <= $total_pages; $i++): ?>
+            <?php if ($i == $current_page): ?>
+                <strong><?=$i;?></strong>
+            <?php else: ?>
+                <a href="<?=site_url('user/show/'.$i);?>"><?=$i;?></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+
+        <?php 
+        // Display a "Next" link
+        if ($current_page < $total_pages): ?>
+            <a href="<?=site_url('user/show/'.($current_page + 1));?>">Next</a>
+        <?php endif; ?>
+    </div>
+    <p>Page <?=$current_page;?> of <?=$total_pages;?>.</p>
+
 </body>
 </html>
