@@ -6,9 +6,10 @@ class Usersmodel extends Model {
     protected $primary_key = 'id';
     protected $allowed_fields = ['fname', 'lname', 'email'];
     protected $validation_rules = [
-        'lname' => 'required|min_length[2]|max_length[100]',
-        'fname' => 'required|min_length[2]|max_length[100]',
-        'email' => 'required|valid_email|max_length[150]'
+        
+        'lname' => 'required|min_length[2]|max_length[255]',
+        'fname' => 'required|min_length[2]|max_length[255]',
+        'email' => 'required|valid_email|max_length[255]'
     ];
 
     public function __construct()
@@ -28,10 +29,10 @@ class Usersmodel extends Model {
             $query = $this->db->table($this->table);
 
             if (!empty($q)) {
-                // Simple OR LIKE search across fname, lname, email
-                $query->like('fname', $q)
-                      ->or_like('lname', $q)
-                      ->or_like('email', $q);
+                $query
+                      ->or_like('fname', '%'.$q.'%')
+                      ->like('lname', '%'.$q.'%')
+                      ->or_like('email', '%'.$q.'%');
             }
 
             // count total rows
