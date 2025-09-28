@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class StudentModel extends Model
+class UserModel extends Model
 {
     protected $table      = 'students'; // **Change to your actual table name**
     protected $primaryKey = 'id';
