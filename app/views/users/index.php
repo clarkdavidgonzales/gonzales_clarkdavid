@@ -40,13 +40,7 @@
 <body class="min-h-screen">
 
   <!-- Header -->
-  <nav class="bg-blue-700 shadow-lg border-b border-blue-800">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-white text-2xl font-bold flex items-center gap-2">
-        <i class="fa-solid fa-users"></i> Student List
-      </h1>
-    </div>
-  </nav>
+  <?php $title = 'Student List'; include __DIR__ . '/../partials/header.php'; ?>
 
   <!-- Content -->
   <div class="max-w-6xl mx-auto mt-10 px-4">
@@ -68,11 +62,13 @@
           </button>
         </form>
 
-        <!-- Add Button -->
+        <!-- Add Button (admin only) -->
+        <?php if (!empty($current_user) && ($current_user['role'] ?? '') === 'admin'): ?>
         <a href="<?=site_url('users/create')?>"
            class="btn-hover inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition">
           <i class="fa-solid fa-user-plus"></i> Add Student Record
         </a>
+        <?php endif; ?>
       </div>
 
       <!-- Table -->
@@ -96,6 +92,7 @@
                   <td class="py-3 px-4"><?=($user['lname']);?></td>
                   <td class="py-3 px-4"><?=($user['email']);?></td>
                   <td class="py-3 px-4 flex justify-center gap-3">
+                    <?php if (!empty($current_user) && ($current_user['role'] ?? '') === 'admin'): ?>
                     <a href="<?=site_url('users/update/'.$user['id']);?>"
                        class="btn-hover bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
                       <i class="fa-solid fa-pen-to-square"></i> Update
@@ -104,6 +101,7 @@
                        class="btn-hover bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
                       <i class="fa-solid fa-trash"></i> Delete
                     </a>
+                    <?php endif; ?>
                   </td>
                 </tr>
               <?php endforeach; ?>

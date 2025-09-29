@@ -7,10 +7,15 @@ class UsersController extends Controller {
     {
         parent::__construct();
         $this->call->model('UsersModel');
+        // load auth library to check permissions
+        $this->call->library('Auth');
     }
 
     public function index()
     {
+        // make current user available to views
+        $data['current_user'] = $this->Auth->current_user();
+
         // Current page
         $page = 1;
         if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -55,6 +60,10 @@ class UsersController extends Controller {
     }
 
     function create(){
+        // only admin can create
+        $this->Auth->require_login();
+        $this->Auth->require_role('admin');
+
         if($this->io->method() == 'post'){
             $data = [
                 'fname' => $this->io->post('fname'),
@@ -74,6 +83,9 @@ class UsersController extends Controller {
     }
 
     function update($id){
+        // only admin can update
+        $this->Auth->require_login();
+        $this->Auth->require_role('admin');
         $user = $this->UsersModel->find($id);
         if(!$user){
             echo "User not found.";
@@ -99,6 +111,9 @@ class UsersController extends Controller {
     }
     
     function delete($id){
+        // only admin can delete
+        $this->Auth->require_login();
+        $this->Auth->require_role('admin');
         if($this->UsersModel->delete($id)){
             redirect(site_url());
         }else{
