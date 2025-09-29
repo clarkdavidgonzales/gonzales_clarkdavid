@@ -6,7 +6,7 @@ class StudentsController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->call->model('StudentsModel');
+        $this->call->model('UsersModel');
     }
 
     public function index()
