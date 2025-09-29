@@ -17,8 +17,8 @@ class AccountsModel extends Model {
      */
     public function find_by_username($username)
     {
-        $stmt = $this->db->table($this->table)->where('username', $username)->get();
-        $row = $stmt->getRowArray();
+        // The Database builder's get() returns the fetched row (or false/null) directly.
+        $row = $this->db->table($this->table)->where('username', $username)->get();
         return $row ? $row : null;
     }
 

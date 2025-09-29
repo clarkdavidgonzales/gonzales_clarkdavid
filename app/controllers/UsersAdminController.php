@@ -4,9 +4,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 class UsersAdminController extends Controller {
     public function __construct()
     {
+        // Load Auth and AccountsModel early so before_action (called in parent)
+        // can access $this->Auth. Use load_class to avoid depending on $this->call
+        // which isn't set until parent::__construct() runs.
+        try {
+            load_class('invoker', 'kernel');
+            $invoker =& load_class('invoker', 'kernel');
+            $invoker->library('Auth');
+            $invoker->model('AccountsModel');
+        } catch (Exception $e) {
+            // proceed; parent may still initialize autoloaded libraries
+        }
+
         parent::__construct();
-        $this->call->library('Auth');
-        $this->call->model('AccountsModel');
     }
 
     public function before_action() {
