@@ -8,7 +8,7 @@ class StudentsController extends Controller {
     }
 
     public function index() {
-        $q = $this->io->get('q') ?? '';
+        $q = $this->io->get('q', '');
         $page = $this->io->get('page') ?? 1;
         $records_per_page = 5;
 
