@@ -5,9 +5,15 @@ class StudentsController extends Controller {
     public function __construct() {
         parent::__construct();
         $this->call->model('StudentsModel'); // Load StudentsModel instead of UsersModel
+        // load auth library
+        $this->call->library('Auth');
     }
 
     public function index() {
+        // Require authenticated admin users
+        $this->Auth->require_login();
+        $this->Auth->require_role('admin');
+
         $q = $this->io->get('q', '');
         $page = $this->io->get('page') ?? 1;
         $records_per_page = 5;
