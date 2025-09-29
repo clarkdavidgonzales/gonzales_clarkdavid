@@ -29,11 +29,12 @@ class Usersmodel extends Model {
 
             if (!empty($q)) {
                 // Grouped search: fname OR lname OR email
-                $query->group_start()
-                      ->like('fname', $q)
-                      ->or_like('lname', $q)
-                      ->or_like('email', $q)
-                      ->group_end();
+                // The database builder uses grouped(Closure) for grouped conditions.
+                $query->grouped(function($qb) use ($q) {
+                    $qb->like('fname', $q)
+                       ->or_like('lname', $q)
+                       ->or_like('email', $q);
+                });
             }
 
             // count total rows
