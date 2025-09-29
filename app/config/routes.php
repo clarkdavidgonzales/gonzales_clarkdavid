@@ -49,6 +49,8 @@ $router->post('/auth/login', 'AuthController@login');
 $router->get('/auth/logout', 'AuthController@logout');
 
 // Students (protected)
+$router->get('/', 'StudentsController@index'); // ✅ default home
 $router->get('/students', 'StudentsController@index', ['middleware' => 'AuthMiddleware']);
 $router->get('/students/create', 'StudentsController@create', ['middleware' => 'AuthMiddleware']);
 $router->post('/students/store', 'StudentsController@store', ['middleware' => 'AuthMiddleware']);
+
