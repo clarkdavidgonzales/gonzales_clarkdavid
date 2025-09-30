@@ -29,11 +29,13 @@ class Usersmodel extends Model {
 
             if (!empty($q)) {
                 // Grouped search: fname OR lname OR email
+                // Use % wildcards for partial matching
+                $term = '%'. $q .'%';
                 // The database builder uses grouped(Closure) for grouped conditions.
-                $query->grouped(function($qb) use ($q) {
-                    $qb->like('fname', $q)
-                       ->or_like('lname', $q)
-                       ->or_like('email', $q);
+                $query->grouped(function($qb) use ($term) {
+                    $qb->like('fname', $term)
+                       ->or_like('lname', $term)
+                       ->or_like('email', $term);
                 });
             }
 
