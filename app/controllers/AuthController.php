@@ -31,6 +31,6 @@ class AuthController extends Controller {
     public function logout()
     {
         $this->Auth->logout();
-        redirect(site_url('login'));
+        redirect(site_url());
     }
 }
