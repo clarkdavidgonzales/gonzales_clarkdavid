@@ -9,7 +9,7 @@
 <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-xl font-bold">Users</h1>
-        <a href="<?= site_url('admin/users/create') ?>" class="bg-blue-600 text-white px-3 py-1 rounded">New User</a>
+    <a href="<?= site_url('admin/users/create') ?>" class="bg-red-600 text-white px-3 py-1 rounded">New User</a>
     </div>
 
     <table class="w-full table-auto border-collapse">

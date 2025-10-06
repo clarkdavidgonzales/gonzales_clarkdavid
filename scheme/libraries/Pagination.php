@@ -155,8 +155,8 @@ class Pagination
                     'nav'    => 'flex justify-center mt-4',
                     'ul'     => 'inline-flex -space-x-px',
                     'li'     => 'px-1',
-                    'a'      => 'inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 first:rounded-l-md last:rounded-r-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
-                    'active' => 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600 hover:bg-indigo-50'
+                    'a'      => 'inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 first:rounded-l-md last:rounded-r-md focus:outline-none focus:ring-2 focus:ring-red-500',
+                    'active' => 'z-10 bg-red-50 border-red-500 text-red-600 hover:bg-red-50'
                 ];
                 break;
             case 'custom':

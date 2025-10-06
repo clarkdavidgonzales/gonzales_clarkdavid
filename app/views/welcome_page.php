@@ -15,8 +15,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-            background: #f8fafc;
-            color: #334155;
+            background: #fff5f5; /* light red-50 */
+                color: #7f1d1d; /* red-800 */
         }
 
         .container {
@@ -30,7 +30,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         }
 
         .header {
-            background: #3B82F6; /* lighter blue */
+            background: #dc2626; /* red-600 */
             color: #ffffff;
             padding: 2rem;
             text-align: center;
@@ -46,7 +46,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         }
 
         h2 {
-            color: #1e40af;
+            color: #991b1b; /* red-800 */
             margin-top: 2rem;
         }
 
@@ -57,9 +57,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
         code, pre {
             display: block;
-            background: #f1f5f9;
+            background: #fff1f1; /* red-50 */
             padding: 1rem;
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid #dc2626; /* red-600 */
             margin-bottom: 1rem;
             font-size: 0.9rem;
             color: #1e293b;
@@ -76,7 +76,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         }
 
         a {
-            color: #2563eb;
+            color: #b91c1c; /* red-700 */
             text-decoration: none;
         }
 
@@ -88,8 +88,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
             font-size: 0.9rem;
             text-align: center;
             padding: 1rem;
-            background: #f1f5f9;
-            border-top: 1px solid #e2e8f0;
+            background: #fff1f1; /* red-50 */
+            border-top: 1px solid #fee2e2;
         }
 
         .grid {
@@ -99,10 +99,10 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         }
 
         .card {
-            background: #f8fafc;
+            background: #fff5f5; /* red-50 */
             padding: 1rem;
             border-radius: 6px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #fee2e2;
         }
 
         .card h3 {

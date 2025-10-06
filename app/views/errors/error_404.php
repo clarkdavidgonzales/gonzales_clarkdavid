@@ -12,7 +12,7 @@
 	  --muted: #475569;
 	  --primary: #4f46e5;
 	  --border: #e5e7eb;
-	  --shadow: 0 10px 25px rgba(2, 6, 23, .06);
+		--shadow: 0 10px 25px rgba(2, 6, 23, .06);
 	}
 	* { box-sizing: border-box; }
 	html, body { height: 100%; margin: 0; }
@@ -40,8 +40,8 @@
 	  font-weight: 700;
 	  letter-spacing: .08em;
 	  color: var(--primary);
-	  background: rgba(79,70,229,.08);
-	  border: 1px solid rgba(79,70,229,.15);
+		background: rgba(220,38,38,.08);
+		border: 1px solid rgba(220,38,38,.15);
 	  border-radius: 999px;
 	  padding: .4rem .9rem;
 	  margin-bottom: 1rem;
@@ -83,9 +83,8 @@
 	}
 	.btn.primary {
 	  background: var(--primary);
-	  color: white;
 	  border-color: transparent;
-	  box-shadow: 0 8px 18px rgba(79,70,229,.25);
+		box-shadow: 0 8px 18px rgba(220,38,38,.25);
 	}
 	.btn.primary:hover {
 	  background: #4338ca;

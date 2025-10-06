@@ -12,13 +12,13 @@
   <style>
     body { 
       font-family: 'Inter', sans-serif; 
-      background: #f7fafc; /* light gray professional bg */
+  background: #fff5f5; /* light red-50 professional bg */
       color: #2d3748; 
     }
-    table thead tr { background: #2b6cb0; } /* deep blue header */
+    table thead tr { background: #dc2626; } /* deep red header */
     .hp-page { 
       padding: 6px 12px; 
-      background: #2b6cb0; 
+      background: #dc2626; 
       border-radius: 6px; 
       color: white; 
       font-weight: 600; 
@@ -27,7 +27,7 @@
     .hp-page:hover { background: #2c5282; transform: translateY(-2px); }
     .hp-current { 
       padding: 6px 12px; 
-      background: #3182ce; 
+  background: #ef4444; 
       border-radius: 6px; 
       color: white; 
       font-weight: 700; 
@@ -41,13 +41,13 @@
 <body class="min-h-screen">
 
   <!-- Header -->
-  <nav class="bg-blue-700 shadow-lg border-b border-blue-800">
+  <nav class="bg-red-700 shadow-lg border-b border-red-800">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <h1 class="text-white text-2xl font-bold flex items-center gap-2">
       <i class="fa-solid fa-users"></i>
       Student List    </h1>
     <div class="flex items-center gap-3">
-              <a href="/index.php/login" class="bg-white text-blue-700 px-3 py-1 rounded">Login</a>
+              <a href="/index.php/login" class="bg-white text-red-700 px-3 py-1 rounded">Login</a>
           </div>
   </div>
 </nav>
@@ -67,7 +67,7 @@
             value="" 
             placeholder="Search student..." 
             class="px-4 py-2 border border-gray-400 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 bg-white placeholder-gray-400">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg shadow transition">
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-lg shadow transition">
             <i class="fa fa-search"></i>
           </button>
         </form>

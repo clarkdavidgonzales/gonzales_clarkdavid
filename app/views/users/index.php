@@ -11,22 +11,22 @@
   <style>
     body { 
       font-family: 'Inter', sans-serif; 
-      background: #f7fafc; /* light gray professional bg */
-      color: #2d3748; 
+      background: #fff5f5; /* light red-50 */
+      color: #7f1d1d; /* red-800 */
     }
-    table thead tr { background: #2b6cb0; } /* deep blue header */
+    table thead tr { background: #dc2626; } /* red-600 header */
     .hp-page { 
       padding: 6px 12px; 
-      background: #2b6cb0; 
+      background: #dc2626; 
       border-radius: 6px; 
       color: white; 
       font-weight: 600; 
       transition: 0.2s; 
     }
-    .hp-page:hover { background: #2c5282; transform: translateY(-2px); }
+    .hp-page:hover { background: #b91c1c; transform: translateY(-2px); }
     .hp-current { 
       padding: 6px 12px; 
-      background: #3182ce; 
+      background: #f87171; 
       border-radius: 6px; 
       color: white; 
       font-weight: 700; 
@@ -56,16 +56,16 @@
             name="q" 
             value="<?=html_escape($_GET['q'] ?? '')?>" 
             placeholder="Search student..." 
-            class="px-4 py-2 border border-gray-400 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 bg-white placeholder-gray-400">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg shadow transition">
+            class="px-4 py-2 border border-gray-400 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-red-500 w-64 bg-white placeholder-red-400">
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-lg shadow transition">
             <i class="fa fa-search"></i>
           </button>
         </form>
 
         <!-- Add Button (admin only) -->
         <?php if (!empty($current_user) && ($current_user['role'] ?? '') === 'admin'): ?>
-        <a href="<?=site_url('users/create')?>"
-           class="btn-hover inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition">
+      <a href="<?=site_url('users/create')?>"
+        class="btn-hover inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition">
           <i class="fa-solid fa-user-plus"></i> Add Student Record
         </a>
         <?php endif; ?>
@@ -93,8 +93,8 @@
                   <td class="py-3 px-4"><?=($user['email']);?></td>
                   <td class="py-3 px-4 flex justify-center gap-3">
                     <?php if (!empty($current_user) && ($current_user['role'] ?? '') === 'admin'): ?>
-                    <a href="<?=site_url('users/update/'.$user['id']);?>"
-                       class="btn-hover bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
+              <a href="<?=site_url('users/update/'.$user['id']);?>"
+                class="btn-hover bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
                       <i class="fa-solid fa-pen-to-square"></i> Update
                     </a>
                     <a href="<?=site_url('users/delete/'.$user['id']);?>"

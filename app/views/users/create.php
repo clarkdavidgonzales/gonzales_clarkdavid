@@ -17,33 +17,33 @@
   <main class="max-w-3xl mx-auto mt-10 px-4">
     <div class="bg-white rounded-lg shadow p-6 border">
       <div class="flex items-center gap-4 mb-6">
-        <div class="bg-blue-600 text-white rounded-full p-3">
+  <div class="bg-red-600 text-white rounded-full p-3">
           <i class="fa-solid fa-user-graduate"></i>
         </div>
         <div>
           <h1 class="text-xl font-semibold">Add New Student Record</h1>
-          <p class="text-sm text-gray-500">Create a new student entry</p>
+          <p class="text-sm text-red-500">Create a new student entry</p>
         </div>
       </div>
 
       <form action="<?=site_url('users/create')?>" method="POST" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700">First Name</label>
-          <input type="text" name="fname" required placeholder="Enter first name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <label class="block text-sm font-medium text-red-700">First Name</label>
+          <input type="text" name="fname" required placeholder="Enter first name" class="mt-1 block w-full rounded-md border-red-300 shadow-sm focus:ring-red-500 focus:border-red-500">
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700">Last Name</label>
-          <input type="text" name="lname" required placeholder="Enter last name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <label class="block text-sm font-medium text-red-700">Last Name</label>
+          <input type="text" name="lname" required placeholder="Enter last name" class="mt-1 block w-full rounded-md border-red-300 shadow-sm focus:ring-red-500 focus:border-red-500">
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700">Email</label>
-          <input type="email" name="email" required placeholder="Enter email address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <label class="block text-sm font-medium text-red-700">Email</label>
+          <input type="email" name="email" required placeholder="Enter email address" class="mt-1 block w-full rounded-md border-red-300 shadow-sm focus:ring-red-500 focus:border-red-500">
         </div>
 
         <div>
-          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition">
+          <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition">
             <i class="fa-solid fa-user-plus mr-2"></i> Add Student Record
           </button>
         </div>
